@@ -1,9 +1,12 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import express, { urlencoded } from 'express';
 import jwt from 'jsonwebtoken'
 
-app.use (express.json());
-
 const app = express();
+
+app.use (express.json());
+app.use (urlencoded({extended: false}))
 
 const posts = [
     {
@@ -26,7 +29,8 @@ app.post ('/login', (req, res) => {
     const username = req.body.username;
     const user = {name: username}
 
-    jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
+    const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
+    res.json({accessToken: accessToken})
 })
 
 app.listen (3000);
