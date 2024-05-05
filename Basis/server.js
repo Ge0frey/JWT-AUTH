@@ -10,7 +10,7 @@ app.use (urlencoded({extended: false}))
 
 const posts = [
     {
-        username: 'Geofrey',
+        username: 'Geofrey', 
         title:'Post 1'
     },
     {
